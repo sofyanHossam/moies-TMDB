@@ -75,13 +75,13 @@ fun DetailsScreen(
             }
 
             state.error != null -> {
-                Box(modifier = Modifier.fillMaxSize().statusBarsPadding(), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text("Error: ${state.error}", color = MaterialTheme.colorScheme.error)
                 }
             }
 
             movie != null -> {
-                Box(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
+                Box(modifier = Modifier.fillMaxSize()) {
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data("https://image.tmdb.org/t/p/w780${movie.backdropPath ?: movie.posterPath}")
@@ -201,7 +201,7 @@ fun ShimmerDetailsContent() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(320.dp)
-                .statusBarsPadding()
+                
                 .shimmer()
                 .background(Color.LightGray)
         )
