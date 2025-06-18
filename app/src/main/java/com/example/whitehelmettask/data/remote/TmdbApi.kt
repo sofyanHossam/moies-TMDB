@@ -8,8 +8,14 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-const val API_KEY: String = BuildConfig.TMDB_API_KEY
-
+/*
+ FIXME: FOR WHITHELMET TEAAM:
+   here is just make hard coded api for u to use but i usually use
+   const val API_KEY: String = BuildConfig.TMDB_API_KEY
+   for secure api key
+ */
+//const val API_KEY: String = BuildConfig.TMDB_API_KEY
+const val API_KEY: String = "8cb3dd51149857e590d0542b897ccf4b"
 interface TmdbApi {
     @GET("movie/now_playing")
     suspend fun getNowPlayingMovies(
