@@ -25,6 +25,8 @@ import com.example.whitehelmettask.presentation.home.components.MovieItem
 @Composable
 fun HomeScreen(
     navController: NavController,
+    isDarkTheme: Boolean,
+    onToggleTheme: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -41,11 +43,24 @@ fun HomeScreen(
             .statusBarsPadding()
             .imePadding()
     ) {
-        Text(
-            text = "Welcome 👋",
-            color = MaterialTheme.colorScheme.primary,
-            style = MaterialTheme.typography.titleLarge
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Welcome 👋",
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.titleLarge
+            )
+
+            IconButton(onClick = onToggleTheme) {
+                Text(
+                    text = if (isDarkTheme) "🌞" else "🌙",
+                    modifier = Modifier.padding(8.dp)
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
