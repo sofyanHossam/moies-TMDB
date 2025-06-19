@@ -17,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.whitehelmettask.data.local.ThemePreference
 import com.example.whitehelmettask.presentation.details.DetailsScreen
 import com.example.whitehelmettask.presentation.home.HomeScreen
+import com.example.whitehelmettask.presentation.splash.SplashScreen
 import com.example.whitehelmettask.ui.theme.WhiteHelmetTaskTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,7 +40,11 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    NavHost(navController = navController, startDestination = "home") {
+                    NavHost(navController = navController, startDestination = "splash") {
+
+                        composable("splash") {
+                            SplashScreen(navController = navController)
+                        }
                         composable("home") {
                             HomeScreen(
                                 navController = navController,

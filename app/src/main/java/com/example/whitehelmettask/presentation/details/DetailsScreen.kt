@@ -29,7 +29,7 @@ import com.example.whitehelmettask.R
 import com.example.whitehelmettask.presentation.details.state.DetailsUiState
 import com.valentinilk.shimmer.shimmer
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun DetailsScreen(
     movieId: Int,
@@ -59,7 +59,7 @@ fun DetailsScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.details_back))
+                        Icon(Icons.Default.ArrowBack,  tint = Color.White,contentDescription = stringResource(R.string.details_back))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -162,7 +162,7 @@ fun DetailsScreen(
                         }
 
                         item {
-                            Row(modifier = Modifier.padding(horizontal = 16.dp)) {
+                            FlowRow(modifier = Modifier.padding(horizontal = 16.dp)) {
                                 movie.genres.forEach { genre ->
                                     Text(
                                         text = "• $genre",

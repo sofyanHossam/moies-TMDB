@@ -93,6 +93,8 @@ dependencies {
 
     implementation("com.valentinilk.shimmer:compose-shimmer:1.0.5")
 
+    implementation("com.airbnb.android:lottie-compose:6.3.0")
+
 
 
     testImplementation("junit:junit:4.13.2")
