@@ -8,5 +8,4 @@ interface MovieRepository {
     fun getMovies(query: String?, page: Int): Flow<List<Movie>>
     fun getSearchSuggestions(query: String): Flow<List<String>>
     suspend fun getMovieDetails(movieId: Int): MovieDetails
-
 }

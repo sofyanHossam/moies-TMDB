@@ -6,4 +6,5 @@ data class Movie(
     val posterPath: String,
     val releaseDate: String,
     val isAdult: Boolean
+
 )

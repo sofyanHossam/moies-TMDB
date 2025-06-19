@@ -1,5 +1,9 @@
 package com.example.whitehelmettask.di
 
+import android.app.Application
+import androidx.room.Room
+import com.example.whitehelmettask.data.local.AppDatabase
+import com.example.whitehelmettask.data.local.dao.MovieDao
 import com.example.whitehelmettask.data.remote.TmdbApi
 import com.example.whitehelmettask.data.repo.MovieRepositoryImpl
 import com.example.whitehelmettask.domain.repo.MovieRepository
@@ -33,8 +37,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMovieRepository(api: TmdbApi): MovieRepository {
-        return MovieRepositoryImpl(api)
+    fun provideMovieRepository(
+        api: TmdbApi,
+        movieDao: MovieDao
+    ): MovieRepository {
+        return MovieRepositoryImpl(api, movieDao)
     }
 
     @Provides
@@ -53,6 +60,23 @@ object AppModule {
     @Singleton
     fun provideGetSearchSuggestionsUseCase(repository: MovieRepository): GetSearchSuggestionsUseCase {
         return GetSearchSuggestionsUseCase(repository)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): AppDatabase {
+        return Room.databaseBuilder(
+            app,
+            AppDatabase::class.java,
+            "movies_db"
+        ).fallbackToDestructiveMigration().build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieDao(db: AppDatabase): MovieDao {
+        return db.movieDao()
     }
 
 }
