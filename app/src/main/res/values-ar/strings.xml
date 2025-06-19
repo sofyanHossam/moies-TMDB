@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">وايت هيلمت</string>
+    <string name="welcome_message">أهلاً 👋</string>
+    <string name="search_hint">ابحث عن الأفلام...</string>
+    <string name="no_results">لا توجد نتائج لـ "%1$s"</string>
+    <string name="error_loading">خطأ: %1$s</string>
+    <string name="pagination_error">خطأ أثناء التصفح: %1$s</string>
+    <string name="details_back">عودة</string>
+    <string name="overview">نبذة</string>
+    <string name="genres">الأنواع</string>
+    <string name="release_date">تاريخ الإصدار:</string>
+    <string name="country">البلد:</string>
+    <string name="vote">التقييم:</string>
+    <string name="adult">+18:</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="no_description">لا يوجد وصف هنا </string>
+</resources>

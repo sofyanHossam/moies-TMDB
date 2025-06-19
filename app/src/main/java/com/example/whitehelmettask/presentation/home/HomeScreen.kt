@@ -14,12 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import com.example.whitehelmettask.R
 import com.example.whitehelmettask.presentation.home.components.MovieItem
 
 @Composable
@@ -49,7 +51,7 @@ fun HomeScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Welcome 👋",
+                text =  stringResource(R.string.welcome_message),
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.titleLarge
             )
@@ -70,7 +72,7 @@ fun HomeScreen(
                 query = it
                 viewModel.onSearchQueryChange(it)
             },
-            placeholder = { Text("Search movies...") },
+            placeholder = { Text(stringResource(R.string.search_hint)) },
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
             modifier = Modifier.fillMaxWidth()
         )
@@ -114,13 +116,13 @@ fun HomeScreen(
             movieItems.loadState.refresh is LoadState.Error -> {
                 val error = movieItems.loadState.refresh as LoadState.Error
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("Error: ${error.error.localizedMessage ?: "Unknown Error"}")
+                    Text("${stringResource(R.string.error_loading)} ${error.error.localizedMessage ?: "Unknown Error"}")
                 }
             }
 
             movieItems.itemCount == 0 && query.isNotBlank() -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("No results found for \"$query\"")
+                    Text("${stringResource(R.string.no_results)} \"$query\"")
                 }
             }
 
@@ -154,7 +156,7 @@ fun HomeScreen(
                         val error = movieItems.loadState.append as LoadState.Error
                         item {
                             Text(
-                                "Pagination error: ${error.error.localizedMessage}",
+                                "${stringResource(R.string.pagination_error)} : ${error.error.localizedMessage}",
                                 color = MaterialTheme.colorScheme.error,
                                 modifier = Modifier.padding(8.dp)
                             )

@@ -1,3 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">White Helmet Task</string>
+    <string name="welcome_message">Welcome 👋</string>
+    <string name="search_hint">Search movies...</string>
+    <string name="no_results">No results found for "%1$s"</string>
+    <string name="error_loading">Error: %1$s</string>
+    <string name="pagination_error">Pagination error: %1$s</string>
+    <string name="details_back">Back</string>
+    <string name="overview">Overview</string>
+    <string name="genres">Genres</string>
+    <string name="release_date">Release:</string>
+    <string name="country">Country:</string>
+    <string name="vote">Vote:</string>
+    <string name="adult">+18:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="no_description">No description</string>
 </resources>

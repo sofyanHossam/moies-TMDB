@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -58,7 +59,7 @@ fun DetailsScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.details_back))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -76,7 +77,10 @@ fun DetailsScreen(
 
             state.error != null -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("Error: ${state.error}", color = MaterialTheme.colorScheme.error)
+                    Text(
+                        text = stringResource(R.string.error_loading, state.error ?: "Unknown"),
+                        color = MaterialTheme.colorScheme.error
+                    )
                 }
             }
 
@@ -161,7 +165,7 @@ fun DetailsScreen(
                             Row(modifier = Modifier.padding(horizontal = 16.dp)) {
                                 movie.genres.forEach { genre ->
                                     Text(
-                                        "• ${genre}",
+                                        text = "• $genre",
                                         modifier = Modifier.padding(end = 8.dp),
                                         color = Color.White
                                     )
@@ -179,12 +183,23 @@ fun DetailsScreen(
                                     Text(text = movie.tagline, fontWeight = FontWeight.SemiBold, color = Color.White)
                                     Spacer(modifier = Modifier.height(8.dp))
                                 }
-                                Text(text = movie.overview ?: "No description", color = Color.White)
+
+                                Text(
+                                    text = movie.overview ?: stringResource(R.string.no_description),
+                                    color = Color.White
+                                )
 
                                 Spacer(modifier = Modifier.height(12.dp))
 
-                                Text("Country: ${movie.originCountry.joinToString()}", color = Color.White)
-                                Text("+18: ${if (movie.adult) "Yes" else "No"}", color = Color.White)
+                                Text(
+                                    text = stringResource(R.string.country) + " ${movie.originCountry.joinToString()}",
+                                    color = Color.White
+                                )
+                                Text(
+                                    text = stringResource(R.string.adult) + " " +
+                                            stringResource(if (movie.adult) R.string.yes else R.string.no),
+                                    color = Color.White
+                                )
                             }
                         }
                     }
@@ -196,12 +211,13 @@ fun DetailsScreen(
 
 @Composable
 fun ShimmerDetailsContent() {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(320.dp)
-                
                 .shimmer()
                 .background(Color.LightGray)
         )
